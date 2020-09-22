@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:background="@android:color/white"
+    android:layout_height="match_parent"
+    tools:context=".view.activity.SubmitGoodActivity">
+
+    <androidx.appcompat.widget.Toolbar
+        android:layout_width="match_parent"
+        app:contentInsetStart="0dp"
+        android:background="@color/colorPrimaryDark"
+        android:layout_height="60dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageButton
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:id="@+id/cancel"
+                android:padding="20dp"
+                android:src="@drawable/ic_error"
+                android:background="@android:color/transparent"
+                android:layout_width="60dp"
+                android:layout_height="60dp"/>
+
+            <TextView
+                android:text="发布"
+                android:textColor="@color/colorPrimary"
+                android:textSize="25sp"
+                android:textStyle="bold"
+                android:gravity="center"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"/>
+
+            <ImageButton
+                android:id="@+id/submit"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:src="@drawable/ic_right"
+                android:padding="20dp"
+                android:background="@android:color/transparent"
+                android:layout_width="60dp"
+                android:layout_height="60dp"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.appcompat.widget.Toolbar>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp"
+        android:paddingTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <EditText
+        android:id="@+id/desc"
+        android:gravity="top"
+        android:hint="品牌型号，其他信息"
+        android:background="@android:color/white"
+        android:layout_width="match_parent"
+        android:layout_height="120dp"/>
+
+    <ImageView
+        android:id="@+id/submitImg"
+        android:src="@mipmap/ic_launcher"
+        android:layout_marginTop="20dp"
+        android:maxHeight="120dp"
+        android:maxWidth="120dp"
+        android:layout_width="wrap_content"
+        android:layout_height="120dp"/>
+
+    <TextView
+        android:text="发货地:重庆 南岸区"
+        android:layout_marginTop="20dp"
+        android:backgroundTint="#8aaa"
+        android:background="@drawable/good_item_radius_shape"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        app:drawableStartCompat="@drawable/ic_location" />
+
+        <View
+            android:layout_marginTop="40dp"
+            android:background="@android:color/darker_gray"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp">
+
+            <TextView
+                android:gravity="center_vertical"
+                android:textColor="@color/colorPrimary"
+                android:text="价格"
+                android:textSize="20sp"
+                android:layout_width="100dp"
+                android:layout_height="match_parent"
+                app:drawableStartCompat="@drawable/ic_money" />
+
+            <EditText
+                android:id="@+id/money"
+                android:layout_alignParentEnd="true"
+                android:layout_gravity="end"
+                android:drawableEnd="@drawable/ic_arrow_right"
+                android:hint="0.00"
+                android:inputType="number|numberDecimal"
+                android:drawableStart="@drawable/ic_money_big"
+                android:textColorHint="@android:color/holo_red_light"
+                android:background="@android:color/transparent"
+                android:textColor="@android:color/holo_red_light"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"/>
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:orientation="vertical">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginTop="10dp"
+        android:background="@android:color/white"
+        android:padding="5dp"
+        app:cardCornerRadius="15dp"
+        app:cardElevation="10dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/colorPrimaryDark"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="10dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:text="钱包"
+                android:textColor="@android:color/black"
+                android:textStyle="bold"
+                app:drawableTopCompat="@drawable/ic_wallet" />
+
+            <TextView
+                android:id="@+id/money"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="start"
+                android:text="0.00"
+                android:textSize="10sp"
+                app:drawableStartCompat="@drawable/ic_money_small_dark" />
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <sl.view.elasticviewlibrary.ElasticLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="80dp"
+        android:background="@android:color/white"
+        android:orientation="vertical">
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_marginTop="10dp"
+                android:paddingStart="20dp"
+                android:paddingEnd="20dp"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/button_radius_shape"
+                    android:gravity="center"
+                    android:text="充值"
+                    android:textSize="25sp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/button_radius_shape"
+                    android:text="提现"
+                    android:textAlignment="center"
+                    android:textSize="25sp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/button_radius_shape"
+                    android:text="最新动态"
+                    android:textAlignment="center"
+                    android:textSize="25sp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/button_radius_shape"
+                    android:text="检查更新"
+                    android:textAlignment="center"
+                    android:textSize="25sp" />
+            </LinearLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+    </sl.view.elasticviewlibrary.ElasticLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_marginTop="-80dp"
+        android:background="@android:color/white"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <Button
+            android:id="@+id/mineLogin"
+            android:text="登录"
+            android:layout_weight="1"
+            android:backgroundTint="@color/colorPrimary"
+            android:background="@drawable/button_radius_shape"
+            android:textColor="@android:color/white"
+            android:layout_width="0dp"
+            android:transitionName="loginBtn"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_height="wrap_content"/>
+
+        <Button
+            android:id="@+id/mineRegister"
+            android:layout_weight="1"
+            android:text="注册"
+            android:transitionName="registerBtn"
+            android:backgroundTint="@color/colorPrimaryDark"
+            android:background="@drawable/button_radius_shape"
+            android:layout_marginEnd="10dp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+</LinearLayout>

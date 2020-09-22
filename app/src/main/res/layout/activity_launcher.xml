@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clipChildren="false"
+    android:clipToPadding="false"
+    tools:context=".view.activity.LauncherUI">
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/viewPager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/tab"
+        android:layout_alignParentTop="true" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_above="@id/tab"
+        android:layout_marginBottom="-45dp"
+        android:background="@drawable/view_shadow" />
+
+    <LinearLayout
+        android:id="@+id/tab"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:paddingTop="5dp"
+        android:gravity="bottom"
+        android:layout_alignParentBottom="true"
+        android:background="@android:color/white"
+        android:clipChildren="false"
+        android:clipToPadding="false"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/order"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:focusable="true"
+                android:gravity="center_horizontal"
+                android:text="订单"
+                android:paddingStart="30dp"
+                android:paddingEnd="30dp"
+                android:textSize="12sp"
+                android:textAlignment="center"
+                android:textColor="@drawable/tab_text_selector"
+                app:drawableTopCompat="@drawable/ic_order_selector" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:clipChildren="false"
+            android:clipToPadding="false"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/publishImg"
+                android:clickable="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="-20dp"
+                android:src="@drawable/ic_publish_selector"
+                android:focusable="true" />
+
+            <TextView
+                android:id="@+id/publishText"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center_horizontal|bottom"
+                android:text="发布"
+                android:paddingStart="30dp"
+                android:paddingEnd="30dp"
+                android:textAlignment="center"
+                android:textColor="@drawable/tab_text_selector"
+                android:textSize="15sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/mine"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center_horizontal"
+                android:paddingStart="30dp"
+                android:paddingEnd="30dp"
+                android:text="我的"
+                android:textSize="12sp"
+                android:textAlignment="center"
+                android:textColor="@drawable/tab_text_selector"
+                app:drawableTopCompat="@drawable/ic_mine_selector" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>

@@ -9,20 +9,19 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityOptionsCompat
 import androidx.fragment.app.Fragment
 import cn.cqupt.taobao.R
+import cn.cqupt.taobao.bean.response.PersonResponse
+import cn.cqupt.taobao.config.Config
 import cn.cqupt.taobao.net.NetUtil
 import cn.cqupt.taobao.net.callback.NetUtilResponse
 import cn.cqupt.taobao.view.show
 import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.activity_login.password
 import kotlinx.android.synthetic.main.activity_login.username
-import kotlinx.android.synthetic.main.activity_register.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
-import okhttp3.ResponseBody
 
-
-class LoginActivity : AppCompatActivity(), NetUtilResponse<ResponseBody> {
+class LoginActivity : AppCompatActivity(), NetUtilResponse<PersonResponse> {
 
     companion object{
         fun start(context: Fragment){
@@ -48,7 +47,7 @@ class LoginActivity : AppCompatActivity(), NetUtilResponse<ResponseBody> {
     }
 
     private fun init(){
-        back.setOnClickListener{
+        loginBack.setOnClickListener{
             onBackPressed()
         }
         login.setOnClickListener{
@@ -58,12 +57,14 @@ class LoginActivity : AppCompatActivity(), NetUtilResponse<ResponseBody> {
                 show("请补全信息")
                 return@setOnClickListener
             }
-//            NetUtil.login(username, password, this)
+            NetUtil.login(username, password, this)
         }
     }
 
-    override fun onSuccess(t: ResponseBody) {
+    override fun onSuccess(t: PersonResponse) {
         show("登录成功")
+        Config.isLogin = true
+        Config.username = username.text.toString()
         setResult(Activity.RESULT_OK)
         finish()
     }

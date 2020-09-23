@@ -1,7 +1,6 @@
 package cn.cqupt.taobao
 
-import android.util.Log
-import cn.cqupt.taobao.bean.response.IsRegisterResponse
+import cn.cqupt.taobao.bean.response.PersonResponse
 import cn.cqupt.taobao.net.NetUtil
 import cn.cqupt.taobao.net.callback.NetUtilResponse
 import org.junit.Test
@@ -15,8 +14,8 @@ class ExampleUnitTest {
     @Test
     fun addition_isCorrect() {
         print("start")
-        NetUtil.isRegister("sl",object :NetUtilResponse<IsRegisterResponse>{
-            override fun onSuccess(t: IsRegisterResponse) {
+        NetUtil.isRegister("sl",object :NetUtilResponse<PersonResponse>{
+            override fun onSuccess(t: PersonResponse) {
                 print("$t")
             }
             override fun onFailure() {

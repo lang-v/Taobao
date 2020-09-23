@@ -5,10 +5,11 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.widget.TextView
 import androidx.core.app.ActivityOptionsCompat
 import androidx.fragment.app.Fragment
 import cn.cqupt.taobao.R
-import cn.cqupt.taobao.bean.response.IsRegisterResponse
+import cn.cqupt.taobao.bean.response.PersonResponse
 import cn.cqupt.taobao.net.NetUtil
 import cn.cqupt.taobao.net.callback.NetUtilResponse
 import cn.cqupt.taobao.view.show
@@ -18,22 +19,22 @@ import kotlinx.android.synthetic.main.activity_register.username
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
-import okhttp3.ResponseBody
 
-class RegisterActivity : AppCompatActivity(), NetUtilResponse<ResponseBody> {
-    companion object{
-        fun start(context: Fragment){
+class RegisterActivity : AppCompatActivity() {
+    private var allowRegister = false
+
+    companion object {
+        fun start(context: Fragment) {
             val intent = Intent(context.context, RegisterActivity::class.java)
             val bundle: Bundle? = ActivityOptionsCompat.makeSceneTransitionAnimation(
                 context.requireActivity(),
                 context.requireView().findViewById(R.id.mineRegister),
                 "registerBtn"
             ).toBundle()
-            context.startActivityForResult(intent,100,bundle)
+            context.startActivityForResult(intent, 100, bundle)
 
         }
     }
-    private var isRegister = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,57 +42,83 @@ class RegisterActivity : AppCompatActivity(), NetUtilResponse<ResponseBody> {
         init()
     }
 
-    private fun init(){
-        back.setOnClickListener{
+    private fun init() {
+        back.setOnClickListener {
             onBackPressed()
         }
-        username.addTextChangedListener(object :TextWatcher{
+        var time = System.currentTimeMillis()
+        username.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
             override fun afterTextChanged(p0: Editable?) {
-                var time = System.currentTimeMillis()
-                NetUtil.isRegister(p0.toString(),object :NetUtilResponse<IsRegisterResponse>{
-                    override fun onSuccess(t: IsRegisterResponse) {
+
+                if (System.currentTimeMillis() - time < 100) {
+                    time = System.currentTimeMillis()
+                    return
+                }
+
+                NetUtil.isRegister(
+                    username.text.toString(),
+                    object : NetUtilResponse<PersonResponse> {
+                        override fun onSuccess(t: PersonResponse) {
 //                        if (t.data.result == 1)return
-                        if (System.currentTimeMillis()-time > 100) {
-                            GlobalScope.launch(Dispatchers.Main) {
-                                tip.text = if (t.data.result == 0) "账户已存在" else ""
+                            if (System.currentTimeMillis() - time > 100) {
+                                GlobalScope.launch(Dispatchers.Main) {
+                                    tip.text = if (t.data.result == 1) {
+                                        allowRegister = true
+                                        "账户已存在"
+                                    }
+                                    else {
+                                        allowRegister = false
+                                        "账户可用"
+                                    }
+                                }
                             }
                         }
-                    }
 
-                    override fun onFailure() {
-                        GlobalScope.launch(Dispatchers.Main) {
-                            tip.text = "查询失败"
+                        override fun onFailure() {
+                            GlobalScope.launch(Dispatchers.Main) {
+                                tip.text = "查询失败"
+                            }
                         }
-                    }
-
-                })
-
+                    })
             }
         })
 
-        register.setOnClickListener{
-            val username:String = username.text.toString()
-            val password:String = password.text.toString()
-            val phoneNumber:String = phoneNumber.text.toString()
+        register.setOnClickListener {
+            val un: String = username.text.toString()
+            val pwd: String = password.text.toString()
+            val pn: String = phoneNumber.text.toString()
 
-            if (username.isNullOrBlank() || password.isNullOrBlank()||phoneNumber.isNullOrBlank()){
+            if (un.isNullOrBlank() || pwd.isNullOrBlank() || pn.isNullOrBlank()) {
                 show("请补全信息")
                 return@setOnClickListener
             }
-//            NetUtil.register(username, password, phoneNumber,this)
-//            跳转登录
-            LoginActivity.start(this)
-            finish()
+            if (!allowRegister){
+                show("请重修改用户名")
+                tip.text = "用户名已存在"
+            }
+            show("正在注册")
+            NetUtil.register(un, pwd, pn, object : NetUtilResponse<PersonResponse> {
+                override fun onSuccess(t: PersonResponse) {
+                    if (t.data.result == 0) {
+                        show("注册成功")
+                        //跳转登录
+                        LoginActivity.start(this@RegisterActivity)
+                        finish()
+                    } else {
+                        show("注册失败")
+                    }
+                }
+
+                override fun onFailure() {
+                    show("注册失败")
+                    GlobalScope.launch(Dispatchers.Main) {
+                        (password as TextView).text = ""
+                    }
+                }
+            })
+
         }
-    }
-
-    override fun onSuccess(t: ResponseBody) {
-
-    }
-
-    override fun onFailure() {
-
     }
 }

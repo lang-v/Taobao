@@ -2,11 +2,10 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:background="@android:color/white"
     android:layout_height="match_parent"
-    tools:context=".view.activity.SubmitGoodActivity">
+    android:orientation="vertical"
+    tools:context=".view.activity.GoodInfoActivity">
 
     <androidx.appcompat.widget.Toolbar
         android:layout_width="match_parent"
@@ -19,18 +18,21 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <ImageButton
+            <Button
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                android:id="@+id/cancel"
-                android:padding="20dp"
-                android:src="@drawable/ic_error"
+                android:id="@+id/infoCancel"
+                android:text="取消"
+                android:gravity="center"
+                android:textSize="20sp"
+                android:textColor="@color/colorPrimary"
                 android:background="@android:color/transparent"
                 android:layout_width="60dp"
                 android:layout_height="60dp"/>
 
             <TextView
-                android:text="发布"
+                android:text="删除"
+                android:id="@+id/infoDelete"
                 android:textColor="@color/colorPrimary"
                 android:textSize="25sp"
                 android:textStyle="bold"
@@ -40,15 +42,17 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"/>
 
-            <ImageButton
-                android:id="@+id/submit"
+            <Button
+                android:id="@+id/infoModify"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                android:src="@drawable/ic_right"
-                android:padding="20dp"
+                android:text="修改"
+                android:gravity="center"
+                android:textSize="20sp"
+                android:textColor="@color/colorPrimary"
                 android:background="@android:color/transparent"
-                android:layout_width="60dp"
-                android:layout_height="60dp"/>
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -62,35 +66,35 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-    <EditText
-        android:id="@+id/desc"
-        android:gravity="top"
-        android:hint="品牌型号，其他信息"
-        android:background="@android:color/white"
-        android:layout_width="match_parent"
-        android:layout_height="120dp"/>
+        <EditText
+            android:id="@+id/desc"
+            android:gravity="top"
+            android:hint="品牌型号，其他信息"
+            android:background="@android:color/white"
+            android:layout_width="match_parent"
+            android:layout_height="120dp"/>
 
-    <ImageView
-        android:id="@+id/submitImg"
-        android:src="@mipmap/ic_launcher"
-        android:layout_marginTop="20dp"
-        android:maxHeight="120dp"
-        android:maxWidth="120dp"
-        android:layout_width="wrap_content"
-        android:layout_height="120dp"/>
+        <ImageView
+            android:id="@+id/infoImg"
+            android:src="@mipmap/ic_launcher"
+            android:layout_marginTop="20dp"
+            android:maxHeight="120dp"
+            android:maxWidth="120dp"
+            android:layout_width="wrap_content"
+            android:layout_height="120dp"/>
 
-    <TextView
-        android:text="发货地:重庆 南岸区"
-        android:layout_marginTop="20dp"
-        android:backgroundTint="#8aaa"
-        android:background="@drawable/good_item_radius_shape"
-        android:paddingStart="10dp"
-        android:paddingEnd="10dp"
-        android:paddingTop="5dp"
-        android:paddingBottom="5dp"
-        android:layout_width="wrap_content"
-        android:layout_height="30dp"
-        app:drawableStartCompat="@drawable/ic_location" />
+        <TextView
+            android:text="发货地:重庆 南岸区"
+            android:layout_marginTop="20dp"
+            android:backgroundTint="#8aaa"
+            android:background="@drawable/good_item_radius_shape"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            app:drawableStartCompat="@drawable/ic_location" />
 
         <View
             android:layout_marginTop="40dp"
@@ -112,7 +116,7 @@
                 app:drawableStartCompat="@drawable/ic_money" />
 
             <EditText
-                android:id="@+id/money"
+                android:id="@+id/infoMoney"
                 android:layout_alignParentEnd="true"
                 android:layout_gravity="end"
                 android:drawableEnd="@drawable/ic_arrow_right"
@@ -127,34 +131,7 @@
 
         </RelativeLayout>
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="50dp">
-
-            <TextView
-                android:gravity="center_vertical"
-                android:textColor="@color/colorPrimary"
-                android:text="数量"
-                android:textSize="20sp"
-                android:layout_width="100dp"
-                android:layout_height="match_parent"
-                app:drawableStartCompat="@drawable/ic_money" />
-
-            <EditText
-                android:id="@+id/submitCont"
-                android:layout_alignParentEnd="true"
-                android:layout_gravity="end"
-                android:drawableEnd="@drawable/ic_arrow_right"
-                android:hint="0"
-                android:inputType="number"
-                android:textColorHint="@android:color/black"
-                android:background="@android:color/transparent"
-                android:textColor="@android:color/black"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"/>
-
-        </RelativeLayout>
-
     </LinearLayout>
+
 
 </LinearLayout>

@@ -1,18 +1,20 @@
 package cn.cqupt.taobao.view.activity
 
 import android.app.Activity
-import android.content.ClipDescription
-import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import cn.cqupt.taobao.R
+import cn.cqupt.taobao.bean.Good
+import cn.cqupt.taobao.bean.response.PersonResponse
 import cn.cqupt.taobao.net.NetUtil
+import cn.cqupt.taobao.net.callback.NetUtilResponse
 import cn.cqupt.taobao.view.show
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.activity_submit_good.*
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import java.io.File
@@ -21,15 +23,15 @@ import kotlin.concurrent.thread
 
 class SubmitGoodActivity : AppCompatActivity(), View.OnClickListener {
 
-    companion object{
-        fun start(context: Activity,imgPath:String){
-            val intent = Intent(context,SubmitGoodActivity::class.java)
-            intent.putExtra("imgPath",imgPath)
-            context.startActivityForResult(intent,200)
+    companion object {
+        fun start(context: Activity, imgPath: String) {
+            val intent = Intent(context, SubmitGoodActivity::class.java)
+            intent.putExtra("imgPath", imgPath)
+            context.startActivityForResult(intent, 200)
         }
     }
 
-    private val imgPath:String by lazy {
+    private val imgPath: String by lazy {
         intent.getStringExtra("imgPath")!!
     }
 
@@ -38,7 +40,8 @@ class SubmitGoodActivity : AppCompatActivity(), View.OnClickListener {
         setContentView(R.layout.activity_submit_good)
         init()
     }
-    private fun init(){
+
+    private fun init() {
         val imgFile = File(imgPath)
         Glide.with(submitImg)
             .load(imgFile)
@@ -49,34 +52,48 @@ class SubmitGoodActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     override fun onClick(p0: View?) {
-        when(p0?.id){
-            R.id.cancel->{
+        when (p0?.id) {
+            R.id.cancel -> {
                 finish()
             }
 
-            R.id.submit->{
+            R.id.submit -> {
                 show("开始上传")
                 GlobalScope.launch {
                     val bean = getContent()
-                    Log.e("submit","$bean")
+                    NetUtil.addGood(bean, object : NetUtilResponse<PersonResponse> {
+                        override fun onSuccess(t: PersonResponse) {
+                            if (t.data.result == 0)
+                                GlobalScope.launch(Dispatchers.Main) {
+                                    show("商品发布成功")
+                                    setResult(RESULT_OK)
+                                    finish()
+                                }
+                            else
+                                GlobalScope.launch(Dispatchers.Main) {
+                                    show("发生错误，请重试")
+                                }
+                        }
 
+                        override fun onFailure() {
+                            GlobalScope.launch(Dispatchers.Main) {
+                                show("发生错误，请重试")
+                            }
+                        }
+                    })
                     //netutil
-                    runOnUiThread {
-                        show("商品发布成功")
-                        setResult(RESULT_OK)
-                        finish()
-                    }
+
                 }
             }
         }
     }
 
 
-    private fun getContent():InfoBean{
-        val description:String = desc.text.toString()
-        val money:String = money.text.toString()
-        return InfoBean(description,imgPath,money)
+    private fun getContent(): Good {
+        val description: String = desc.text.toString()
+        val price: String = money.text.toString()
+        val count: String = submitCont.text.toString()
+        return Good(description, imgPath, price, count)
     }
 
-    data class InfoBean(val description: String,val imgPath: String,val money:String)
 }

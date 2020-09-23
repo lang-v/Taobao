@@ -15,7 +15,7 @@
 
         <ImageButton
             android:src="@drawable/ic_back"
-            android:id="@+id/ack"
+            android:id="@+id/loginBack"
             android:layout_margin="10dp"
             android:padding="5dp"
             android:background="@android:color/transparent"

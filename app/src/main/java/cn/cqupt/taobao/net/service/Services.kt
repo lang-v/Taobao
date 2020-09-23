@@ -1,25 +1,29 @@
 package cn.cqupt.taobao.net.service
 
-import cn.cqupt.taobao.bean.request.IsRegisterBean
-import cn.cqupt.taobao.bean.request.LoginBean
-import cn.cqupt.taobao.bean.request.RegisterBean
-import cn.cqupt.taobao.bean.response.IsRegisterResponse
-import okhttp3.ResponseBody
+import cn.cqupt.taobao.bean.request.*
+import cn.cqupt.taobao.bean.response.GoodResponse
+import cn.cqupt.taobao.bean.response.PersonResponse
 import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.HTTP
-import retrofit2.http.Path
 
 interface Services {
     @HTTP(method = "POST", path = "deal", hasBody = true)
-    fun getGood(): Call<ResponseBody>
+    fun login(@Body bean: LoginBean): Call<PersonResponse>
 
     @HTTP(method = "POST", path = "deal", hasBody = true)
-    fun login(@Body bean: LoginBean): Call<ResponseBody>
+    fun isRegister(@Body json: IsRegisterBean): Call<PersonResponse>
 
     @HTTP(method = "POST", path = "deal", hasBody = true)
-    fun isRegister(@Body json: IsRegisterBean): Call<IsRegisterResponse>
+    fun register(@Body bean: RegisterBean): Call<PersonResponse>
 
     @HTTP(method = "POST", path = "deal", hasBody = true)
-    fun register(@Body bean: RegisterBean): Call<ResponseBody>
+    fun getGoods(@Body bean:GetGoodsBean):Call<GoodResponse>
+
+    @HTTP(method = "POST", path = "deal", hasBody = true)
+    fun addGoods(@Body bean:AddGoodBean):Call<PersonResponse>
+
+    @HTTP(method = "POST", path = "deal", hasBody = true)
+    fun delGoods(@Body bean:DeleteGoodBean):Call<PersonResponse>
+
 }

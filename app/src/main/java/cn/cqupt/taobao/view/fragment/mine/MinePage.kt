@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import cn.cqupt.taobao.R
+import cn.cqupt.taobao.config.Config
 import cn.cqupt.taobao.view.activity.LoginActivity
 import cn.cqupt.taobao.view.activity.RegisterActivity
 import kotlinx.android.synthetic.main.fragment_mine_layout.*
@@ -39,6 +40,7 @@ class MinePage:Fragment(), View.OnClickListener {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         if (requestCode == 100 && resultCode == Activity.RESULT_OK){
             isLogin = true
+            shopName.text = Config.username
             mineLogin.text = "退出"
             mineRegister.visibility = View.GONE
         }
@@ -65,6 +67,8 @@ class MinePage:Fragment(), View.OnClickListener {
 
     private fun logout(){
         isLogin = false
+        Config.isLogin = false
+        Config.username = ""
         mineLogin.text = "登录"
         mineRegister.visibility = View.VISIBLE
     }

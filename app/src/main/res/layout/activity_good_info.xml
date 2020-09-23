@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".view.activity.GoodInfoActivity">
+    tools:context=".view.activity.GoodsInfoActivity">
 
     <androidx.appcompat.widget.Toolbar
         android:layout_width="match_parent"
@@ -126,6 +126,33 @@
                 android:textColorHint="@android:color/holo_red_light"
                 android:background="@android:color/transparent"
                 android:textColor="@android:color/holo_red_light"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"/>
+
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp">
+
+            <TextView
+                android:gravity="center_vertical"
+                android:textColor="@color/colorPrimary"
+                android:text="数量"
+                android:textSize="20sp"
+                android:layout_width="100dp"
+                android:layout_height="match_parent"
+                app:drawableStartCompat="@drawable/ic_money" />
+
+            <EditText
+                android:id="@+id/infoCount"
+                android:layout_alignParentEnd="true"
+                android:layout_gravity="end"
+                android:drawableEnd="@drawable/ic_arrow_right"
+                android:hint="0"
+                android:inputType="number"
+                android:textColorHint="@android:color/black"
+                android:background="@android:color/transparent"
+                android:textColor="@android:color/black"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"/>
 

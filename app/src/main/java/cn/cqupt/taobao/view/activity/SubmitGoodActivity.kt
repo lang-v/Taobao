@@ -4,10 +4,9 @@ import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import cn.cqupt.taobao.R
-import cn.cqupt.taobao.bean.Good
+import cn.cqupt.taobao.bean.Goods
 import cn.cqupt.taobao.bean.response.PersonResponse
 import cn.cqupt.taobao.net.NetUtil
 import cn.cqupt.taobao.net.callback.NetUtilResponse
@@ -18,8 +17,6 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import java.io.File
-import java.io.FileDescriptor
-import kotlin.concurrent.thread
 
 class SubmitGoodActivity : AppCompatActivity(), View.OnClickListener {
 
@@ -89,11 +86,11 @@ class SubmitGoodActivity : AppCompatActivity(), View.OnClickListener {
     }
 
 
-    private fun getContent(): Good {
+    private fun getContent(): Goods {
         val description: String = desc.text.toString()
         val price: String = money.text.toString()
-        val count: String = submitCont.text.toString()
-        return Good(description, imgPath, price, count)
+        val count: String = submitCount.text.toString()
+        return Goods(description, imgPath, price, count)
     }
 
 }

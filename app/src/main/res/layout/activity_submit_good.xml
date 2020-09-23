@@ -141,7 +141,7 @@
                 app:drawableStartCompat="@drawable/ic_money" />
 
             <EditText
-                android:id="@+id/submitCont"
+                android:id="@+id/submitCount"
                 android:layout_alignParentEnd="true"
                 android:layout_gravity="end"
                 android:drawableEnd="@drawable/ic_arrow_right"

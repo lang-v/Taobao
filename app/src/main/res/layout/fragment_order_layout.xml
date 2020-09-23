@@ -23,7 +23,6 @@
                 android:orientation="horizontal">
 
                 <com.google.android.material.tabs.TabItem
-                    android:id="@+id/allData"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -33,7 +32,6 @@
                     android:textSize="15sp" />
 
                 <com.google.android.material.tabs.TabItem
-                    android:id="@+id/overData"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -42,15 +40,6 @@
                     android:textColor="@drawable/toolbar_text_selector"
                     android:textSize="15sp" />
 
-                <com.google.android.material.tabs.TabItem
-                    android:id="@+id/inData"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="进行中"
-                    android:textColor="@drawable/toolbar_text_selector"
-                    android:textSize="15sp" />
 
             </com.google.android.material.tabs.TabLayout>
 

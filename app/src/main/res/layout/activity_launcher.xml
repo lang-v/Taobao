@@ -47,13 +47,13 @@
                 android:layout_height="match_parent"
                 android:focusable="true"
                 android:gravity="center_horizontal"
-                android:text="订单"
+                android:text="店铺"
                 android:paddingStart="30dp"
                 android:paddingEnd="30dp"
                 android:textSize="12sp"
                 android:textAlignment="center"
                 android:textColor="@drawable/tab_text_selector"
-                app:drawableTopCompat="@drawable/ic_order_selector" />
+                app:drawableTopCompat="@drawable/shop_selector" />
 
         </LinearLayout>
 

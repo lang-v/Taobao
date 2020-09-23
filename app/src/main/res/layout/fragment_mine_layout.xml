@@ -10,8 +10,8 @@
         android:layout_width="match_parent"
         android:layout_height="150dp"
         android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp"
         android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
         android:background="@android:color/white"
         android:padding="5dp"
         app:cardCornerRadius="15dp"
@@ -26,6 +26,17 @@
             android:padding="10dp">
 
             <TextView
+                android:id="@+id/shopName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="我的店铺"
+                android:textColor="@color/colorPrimary"
+                android:textSize="25sp" />
+
+
+            <TextView
+                android:layout_marginTop="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -63,11 +74,11 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_marginTop="10dp"
-                android:paddingStart="20dp"
-                android:paddingEnd="20dp"
                 android:layout_height="match_parent"
-                android:orientation="vertical">
+                android:layout_marginTop="10dp"
+                android:orientation="vertical"
+                android:paddingStart="20dp"
+                android:paddingEnd="20dp">
 
                 <TextView
                     android:layout_width="match_parent"
@@ -111,36 +122,36 @@
     </sl.view.elasticviewlibrary.ElasticLayout>
 
     <LinearLayout
-        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_marginTop="-80dp"
         android:background="@android:color/white"
         android:gravity="center"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:orientation="horizontal">
 
         <Button
             android:id="@+id/mineLogin"
-            android:text="登录"
-            android:layout_weight="1"
-            android:backgroundTint="@color/colorPrimary"
-            android:background="@drawable/button_radius_shape"
-            android:textColor="@android:color/white"
             android:layout_width="0dp"
-            android:transitionName="loginBtn"
+            android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:layout_marginEnd="10dp"
-            android:layout_height="wrap_content"/>
+            android:layout_weight="1"
+            android:background="@drawable/button_radius_shape"
+            android:backgroundTint="@color/colorPrimary"
+            android:text="登录"
+            android:textColor="@android:color/white"
+            android:transitionName="loginBtn" />
 
         <Button
             android:id="@+id/mineRegister"
-            android:layout_weight="1"
-            android:text="注册"
-            android:transitionName="registerBtn"
-            android:backgroundTint="@color/colorPrimaryDark"
-            android:background="@drawable/button_radius_shape"
-            android:layout_marginEnd="10dp"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
+            android:layout_weight="1"
+            android:background="@drawable/button_radius_shape"
+            android:backgroundTint="@color/colorPrimaryDark"
+            android:text="注册"
+            android:transitionName="registerBtn" />
 
     </LinearLayout>
 </LinearLayout>
